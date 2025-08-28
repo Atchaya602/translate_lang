@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduTranslate - SIH1385</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #6a11cb;
+      --secondary: #2575fc;
+      --accent: #ff6b6b;
+      --success: #1dd1a1;
+      --warning: #feca57;
+      --dark: #2d3436;
+      --light: #f5f6fa;
+      --glass: rgba(255, 255, 255, 0.15);
+      --glass-border: rgba(255, 255, 255, 0.2);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    .background-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.2;
+    }
+    
+    .shape-1 {
+      width: 300px;
+      height: 300px;
+      background: var(--accent);
+      top: -100px;
+      left: -100px;
+    }
+    
+    .shape-2 {
+      width: 200px;
+      height: 200px;
+      background: var(--success);
+      bottom: -50px;
+      right: -50px;
+    }
+    
+    .shape-3 {
+      width: 150px;
+      height: 150px;
+      background: var(--warning);
+      top: 50%;
+      right: 10%;
+    }
+    
+    .container {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      padding: 30px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 800px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      margin: 20px;
+    }
+    
+    .container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+      transform: rotate(-15deg);
+      z-index: -1;
+    }
+    
+    .logo {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .logo-icon {
+      font-size: 32px;
+      margin-right: 10px;
+      color: white;
+    }
+    
+    .logo-text {
+      font-size: 28px;
+      font-weight: 700;
+      background: linear-gradient(to right, #fff, #e0e0e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    h2 {
+      margin-bottom: 25px;
+      font-weight: 600;
+      color: white;
+      position: relative;
+      display: inline-block;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+    
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+      font-size: 15px;
+      transition: all 0.3s;
+      border: 1px solid transparent;
+    }
+    
+    /* Fix for select dropdown text color */
+    select, select option {
+      color: #2d3436;
+    }
+    
+    /* Fix for select dropdown background */
+    select {
+      background: rgba(255, 255, 255, 0.9) !important;
+    }
+    
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    input::placeholder, textarea::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    button {
+      padding: 15px 25px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin: 10px 5px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    
+    .btn-small {
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+    
+    .success {
+      color: var(--success);
+      font-weight: 500;
+      margin: 15px 0;
+      font-size: 14px;
+    }
+    
+    .error {
+      color: var(--accent);
+      font-weight: 500;
+      margin: 15px 0;
+      font-size: 14px;
+    }
+    
+    .language-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 20px 0;
+    }
+    
+    .language-option {
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+    }
+    
+    .language-option:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .language-option.selected {
+      background: rgba(37, 117, 252, 0.3);
+      border: 1px solid var(--secondary);
+    }
+    
+    .file-upload {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px dashed rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      padding: 30px;
+      margin: 20px 0;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .file-upload:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .file-upload i {
+      font-size: 40px;
+      margin-bottom: 10px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .progress-bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    
+    .progress {
+      height: 100%;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.5s;
+    }
+    
+    .feature-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-left: 10px;
+      font-weight: 500;
+    }
+    
+    .upload-options {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    
+    .translation-result {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: left;
+    }
+    
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .file-info {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 15px;
+      margin: 15px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .file-info i {
+      cursor: pointer;
+      color: var(--accent);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from { transform: translateY(20px); }
+      to { transform: translateY(0); }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @media (max-width: 768px) {
+      .language-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .upload-options {
+        flex-direction: column;
+      }
+    }
+    
+    @media (max-width: 500px) {
+      .language-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <div class="container">
+    <div class="logo">
+      <i class="fas fa-graduation-cap logo-icon"></i>
+      <div class="logo-text">EduTranslate</div>
+    </div>
+    <h2>Educational Material Translator <span class="feature-badge">SIH1385</span></h2>
+    
+    <div class="upload-options">
+      <button onclick="document.getElementById('fileUpload').click()">
+        <i class="fas fa-upload"></i> Upload Local File
+      </button>
+      <button onclick="uploadDrive()">
+        <i class="fab fa-google-drive"></i> Upload from Drive
+      </button>
+      <button onclick="showTextTranslation()">
+        <i class="fas fa-font"></i> Text Translation
+      </button>
+    </div>
+    
+    <input type="file" id="fileUpload" accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png" style="display: none;">
+    
+    <div id="fileInfo" class="file-info" style="display: none;">
+      <span id="fileName">No file selected</span>
+      <i class="fas fa-times" onclick="clearFile()"></i>
+    </div>
+    
+    <div id="textInputSection" style="display: none;">
+      <div class="input-group">
+        <textarea id="sourceText" placeholder="Enter text to translate"></textarea>
+      </div>
+      <button onclick="translateText()"><i class="fas fa-language"></i> Translate Text</button>
+    </div>
+    
+    <h3>Select Target Language</h3>
+    <div class="language-grid">
+      <div class="language-option" data-lang="hi">Hindi</div>
+      <div class="language-option" data-lang="ta">Tamil</div>
+      <div class="language-option" data-lang="te">Telugu</div>
+      <div class="language-option" data-lang="ml">Malayalam</div>
+      <div class="language-option" data-lang="kn">Kannada</div>
+      <div class="language-option" data-lang="bn">Bengali</div>
+      <div class="language-option" data-lang="mr">Marathi</div>
+      <div class="language-option" data-lang="gu">Gujarati</div>
+    </div>
+    
+    <div class="progress-bar">
+      <div class="progress" id="progressBar"></div>
+    </div>
+    
+    <button onclick="translateContent()" class="pulse"><i class="fas fa-language"></i> Translate</button>
+    
+    <div id="translationResult" class="translation-result" style="display: none;">
+      <h3>Translated Content</h3>
+      <div id="translatedContent"></div>
+      
+      <div class="action-buttons">
+        <button onclick="copyTranslation()" class="btn-small"><i class="fas fa-copy"></i> Copy Text</button>
+        <button onclick="downloadPDF()" class="btn-small"><i class="fas fa-download"></i> Download PDF</button>
+      </div>
+    </div>
+    
+    <p id="message" class="success"></p>
+  </div>
+
+  <script>
+    // Initialize language selection
+    document.addEventListener('DOMContentLoaded', function() {
+      const languageOptions = document.querySelectorAll('.language-option');
+      languageOptions.forEach(option => {
+        option.addEventListener('click', function() {
+          languageOptions.forEach(opt => opt.classList.remove('selected'));
+          this.classList.add('selected');
+        });
+      });
+      
+      // Set first language as default selected
+      if (languageOptions.length > 0) {
+        languageOptions[0].classList.add('selected');
+      }
+      
+      // Initialize file upload
+      const fileInput = document.getElementById('fileUpload');
+      fileInput.addEventListener('change', handleFileSelect);
+    });
+    
+    // Handle file selection
+    function handleFileSelect(event) {
+      const file = event.target.files[0];
+      if (file) {
+        document.getElementById('fileInfo').style.display = 'flex';
+        document.getElementById('fileName').textContent = file.name;
+        document.getElementById('textInputSection').style.display = 'none';
+      }
+    }
+    
+    // Clear selected file
+    function clearFile() {
+      document.getElementById('fileUpload').value = '';
+      document.getElementById('fileInfo').style.display = 'none';
+      document.getElementById('fileName').textContent = 'No file selected';
+    }
+    
+    // Show text translation input
+    function showTextTranslation() {
+      document.getElementById('textInputSection').style.display = 'block';
+      document.getElementById('fileInfo').style.display = 'none';
+      document.getElementById('fileUpload').value = '';
+    }
+    
+    // Google Drive upload simulation
+    function uploadDrive() {
+      showMessage("Connecting to Google Drive...", "success");
+      simulateProgress();
+      
+      // Simulate Drive file selection after a delay
+      setTimeout(() => {
+        document.getElementById('fileInfo').style.display = 'flex';
+        document.getElementById('fileName').textContent = 'Document_from_Drive.pdf';
+        document.getElementById('textInputSection').style.display = 'none';
+        showMessage("File selected from Google Drive", "success");
+      }, 2000);
+    }
+    
+    // Translate content (file or text)
+    function translateContent() {
+      const hasFile = document.getElementById('fileUpload').value !== '';
+      const hasText = document.getElementById('sourceText').value !== '';
+      
+      if (!hasFile && !hasText) {
+        showMessage("Please upload a file or enter text to translate", "error");
+        return;
+      }
+      
+      const selectedLang = document.querySelector('.language-option.selected');
+      if (!selectedLang) {
+        showMessage("Please select a target language", "error");
+        return;
+      }
+      
+      const langName = selectedLang.textContent;
+      
+      if (hasFile) {
+        translateFile(langName);
+      } else {
+        translateText();
+      }
+    }
+    
+    // Translate file
+    function translateFile(langName) {
+      showMessage(`Translating to ${langName}...`, "success");
+      simulateProgress();
+      
+      // Simulate translation process
+      setTimeout(() => {
+        document.getElementById('translationResult').style.display = 'block';
+        document.getElementById('translatedContent').innerHTML = `
+          <p>This is a simulated translation of your document to ${langName}.</p>
+          <p>In a real implementation, this would show the actual translated content from your PDF/DOCX file.</p>
+          <p>The translated document would preserve the original formatting while converting all text to the selected language.</p>
+        `;
+        showMessage("Translation completed successfully!", "success");
+      }, 3000);
+    }
+    
+    // Translate text
+    function translateText() {
+      const sourceText = document.getElementById('sourceText').value;
+      if (!sourceText) {
+        showMessage("Please enter text to translate", "error");
+        return;
+      }
+      
+      const selectedLang = document.querySelector('.language-option.selected');
+      if (!selectedLang) {
+        showMessage("Please select a target language", "error");
+        return;
+      }
+      
+      const langName = selectedLang.textContent;
+      showMessage(`Translating to ${langName}...`, "success");
+      simulateProgress();
+      
+      // Simulate translation process
+      setTimeout(() => {
+        document.getElementById('translationResult').style.display = 'block';
+        document.getElementById('translatedContent').textContent = 
+          `This is a simulated translation to ${langName}:\n\n"${sourceText}"\n\nWould be translated properly using a translation API.`;
+        showMessage("Text translation completed!", "success");
+      }, 2000);
+    }
+    
+    // Copy translated text
+    function copyTranslation() {
+      const translatedText = document.getElementById('translatedContent').textContent;
+      navigator.clipboard.writeText(translatedText)
+        .then(() => {
+          showMessage("Translation copied to clipboard!", "success");
+        })
+        .catch(err => {
+          showMessage("Failed to copy text", "error");
+        });
+    }
+    
+    // Download as PDF
+    function downloadPDF() {
+      showMessage("Generating PDF download...", "success");
+      
+      // Simulate PDF generation
+      setTimeout(() => {
+        showMessage("PDF downloaded successfully!", "success");
+        
+        // In a real implementation, this would trigger an actual download
+        alert("PDF download would start automatically in a real implementation");
+      }, 1500);
+    }
+    
+    // Show message
+    function showMessage(text, type) {
+      const messageElem = document.getElementById('message');
+      messageElem.textContent = text;
+      messageElem.className = type;
+    }
+    
+    // Simulate progress bar
+    function simulateProgress() {
+      let progressBar = document.getElementById('progressBar');
+      progressBar.style.width = '0%';
+      
+      let width = 0;
+      let interval = setInterval(() => {
+        if (width >= 100) {
+          clearInterval(interval);
+        } else {
+          width += 5;
+          progressBar.style.width = width + '%';
+        }
+      }, 100);
+    }
+  </script>
+</body>
+</html>
